@@ -49,6 +49,19 @@ function App() {
     );
     setCelebs(orderLocal);
   }
+
+
+  const remove = (id) =>{
+    let local = [...celebs];
+    let filteredLocal = local.filter( celeb =>{ 
+      return celeb.id === id?false : true;
+    })
+
+    console.log(id);
+
+    setCelebs(filteredLocal);
+
+  }
   
   
   return <div className="App">
@@ -65,6 +78,7 @@ function App() {
         <th>Popularity</th>
         <th>Won Oscar</th>
         <th>Won Emmy</th>
+        <th>Action</th>
 
       </tr>
       {
@@ -77,6 +91,11 @@ function App() {
         <td>{celeb.popularity}</td>
         <td>{celeb.wonOscar? "🏆" : ""}</td>
         <td>{celeb.wonEmmy?"🏆" : ""}</td>
+
+        <td>
+        <button onClick= {()=> remove(celeb.id)}> Delete</button>
+        </td>
+
       </tr>
       )
 
