@@ -3,9 +3,22 @@ import React, { useState } from 'react';
 import contacts from "./contacts.json";
 
 const firstFive = contacts.slice(0, 6);
+
+const choseRandom = () => {
+  let i = Math.floor(Math.random() * contacts.length);
+  let remaining = contacts.filter(celeb =>{
+    firstFive.forEach(celebsIn =>{ return celebsIn.name === celeb.name? false : true;})
+  })
+  
+  return remaining[i];
+} 
+
+
 function App() {
   const [celebs, setCelebs] = useState(firstFive);
   return <div className="App">
+
+    <button onClick={useState( firstFive.push(choseRandom)) }> ADD RANDOM</button>
 
     <table>
       <thead>Celeb Table</thead>
