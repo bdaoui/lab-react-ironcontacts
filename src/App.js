@@ -34,13 +34,28 @@ function App() {
     setCelebs(orderLocal);
 
   }
+
+  const sortPop = () => {
+    let local = [...celebs];
+    let orderLocal = local.sort( (a,b) =>{
+      if (a.popularity < b.popularity){
+        return  1;
+      }
+      if (a.popularity > b.popularity){
+        return -1;
+      }
+      return 0;
+    }
+    );
+    setCelebs(orderLocal);
+  }
   
   
   return <div className="App">
 
     <button onClick= {choseRandom}> ADD RANDOM</button>
     <button onClick= {sortName}> Sort BY NAME</button>
-    <button> Sort BY POPULARITY</button>
+    <button onClick= {sortPop}> Sort BY POPULARITY</button>
 
     <table>
       <thead>Celeb Table</thead>
