@@ -2,23 +2,24 @@ import "./App.css";
 import React, { useState } from 'react';
 import contacts from "./contacts.json";
 
-const firstFive = contacts.slice(0, 6);
+const copyContacts = [...contacts];
+const firstFive = contacts.splice(0, 5);
 
-const choseRandom = () => {
-  let i = Math.floor(Math.random() * contacts.length);
-  let remaining = contacts.filter(celeb =>{
-    firstFive.forEach(celebsIn =>{ return celebsIn.name === celeb.name? false : true;})
-  })
-  
-  return remaining[i];
-} 
 
 
 function App() {
   const [celebs, setCelebs] = useState(firstFive);
+
+  const choseRandom = () => {
+    let i = Math.floor(Math.random() * copyContacts.length);
+    let one = copyContacts.splice(i, 1);
+    setCelebs = [].concat(firstFive, one);
+    
+  } 
+  
   return <div className="App">
 
-    <button onClick={useState( firstFive.push(choseRandom)) }> ADD RANDOM</button>
+    <button onClick= {choseRandom}> ADD RANDOM</button>
 
     <table>
       <thead>Celeb Table</thead>
