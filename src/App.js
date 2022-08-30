@@ -13,13 +13,34 @@ function App() {
   const choseRandom = () => {
     let i = Math.floor(Math.random() * copyContacts.length);
     let one = copyContacts.splice(i, 1);
-    setCelebs = [].concat(firstFive, one);
+    setCelebs([].concat(firstFive, one) );
     
   } 
+
+  const sortName = () => {
+
+    let local = [...celebs];
+    let orderLocal = local.sort( (a,b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+      return 0;
+    }
+    );
+
+    setCelebs(orderLocal);
+
+  }
+  
   
   return <div className="App">
 
     <button onClick= {choseRandom}> ADD RANDOM</button>
+    <button onClick= {sortName}> Sort BY NAME</button>
+    <button> Sort BY POPULARITY</button>
 
     <table>
       <thead>Celeb Table</thead>
